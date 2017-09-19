@@ -1,0 +1,3537 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>test_report</title>
+    <meta name="generator" content="HTMLTestRunner 0.8.2"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    
+<style type="text/css" media="screen">
+body        { font-family: verdana, arial, helvetica, sans-serif; font-size: 80%; }
+table       { font-size: 100%; }
+pre         { }
+
+/* -- heading ---------------------------------------------------------------------- */
+h1 {
+	font-size: 16pt;
+	color: gray;
+}
+.heading {
+    margin-top: 0ex;
+    margin-bottom: 1ex;
+}
+
+.heading .attribute {
+    margin-top: 1ex;
+    margin-bottom: 0;
+}
+
+.heading .description {
+    margin-top: 4ex;
+    margin-bottom: 6ex;
+}
+
+/* -- css div popup ------------------------------------------------------------------------ */
+a.popup_link {
+}
+
+a.popup_link:hover {
+    color: red;
+}
+
+.popup_window {
+    display: none;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    /*border: solid #627173 1px; */
+    padding: 10px;
+    background-color: #E6E6D6;
+    font-family: "Lucida Console", "Courier New", Courier, monospace;
+    text-align: left;
+    font-size: 8pt;
+    width: 500px;
+}
+
+}
+/* -- report ------------------------------------------------------------------------ */
+#show_detail_line {
+    margin-top: 3ex;
+    margin-bottom: 1ex;
+}
+#result_table {
+    width: 80%;
+    border-collapse: collapse;
+    border: 1px solid #777;
+}
+#header_row {
+    font-weight: bold;
+    color: white;
+    background-color: #777;
+}
+#result_table td {
+    border: 1px solid #777;
+    padding: 2px;
+}
+#total_row  { font-weight: bold; }
+.passClass  { background-color: #6c6; }
+.failClass  { background-color: #c60; }
+.errorClass { background-color: #c00; }
+.passCase   { color: #6c6; }
+.failCase   { color: #c60; font-weight: bold; }
+.errorCase  { color: #c00; font-weight: bold; }
+.hiddenRow  { display: none; }
+.testcase   { margin-left: 2em; }
+
+
+/* -- ending ---------------------------------------------------------------------- */
+#ending {
+}
+
+</style>
+
+</head>
+<body>
+<script language="javascript" type="text/javascript"><!--
+output_list = Array();
+
+/* level - 0:Summary; 1:Failed; 2:All */
+function showCase(level) {
+    trs = document.getElementsByTagName("tr");
+    for (var i = 0; i < trs.length; i++) {
+        tr = trs[i];
+        id = tr.id;
+        if (id.substr(0,2) == 'ft') {
+            if (level < 1) {
+                tr.className = 'hiddenRow';
+            }
+            else {
+                tr.className = '';
+            }
+        }
+        if (id.substr(0,2) == 'pt') {
+            if (level > 1) {
+                tr.className = '';
+            }
+            else {
+                tr.className = 'hiddenRow';
+            }
+        }
+    }
+}
+
+
+function showClassDetail(cid, count) {
+    var id_list = Array(count);
+    var toHide = 1;
+    for (var i = 0; i < count; i++) {
+        tid0 = 't' + cid.substr(1) + '.' + (i+1);
+        tid = 'f' + tid0;
+        tr = document.getElementById(tid);
+        if (!tr) {
+            tid = 'p' + tid0;
+            tr = document.getElementById(tid);
+        }
+        id_list[i] = tid;
+        if (tr.className) {
+            toHide = 0;
+        }
+    }
+    for (var i = 0; i < count; i++) {
+        tid = id_list[i];
+        if (toHide) {
+            document.getElementById('div_'+tid).style.display = 'none'
+            document.getElementById(tid).className = 'hiddenRow';
+        }
+        else {
+            document.getElementById(tid).className = '';
+        }
+    }
+}
+
+
+function showTestDetail(div_id){
+    var details_div = document.getElementById(div_id)
+    var displayState = details_div.style.display
+    // alert(displayState)
+    if (displayState != 'block' ) {
+        displayState = 'block'
+        details_div.style.display = 'block'
+    }
+    else {
+        details_div.style.display = 'none'
+    }
+}
+
+
+function html_escape(s) {
+    s = s.replace(/&/g,'&amp;');
+    s = s.replace(/</g,'&lt;');
+    s = s.replace(/>/g,'&gt;');
+    return s;
+}
+
+/* obsoleted by detail in <div>
+function showOutput(id, name) {
+    var w = window.open("", //url
+                    name,
+                    "resizable,scrollbars,status,width=800,height=450");
+    d = w.document;
+    d.write("<pre>");
+    d.write(html_escape(output_list[id]));
+    d.write("\n");
+    d.write("<a href='javascript:window.close()'>close</a>\n");
+    d.write("</pre>\n");
+    d.close();
+}
+*/
+--></script>
+
+<div class='heading'>
+<h1>test_report</h1>
+<p class='attribute'><strong>Start Time:</strong> 2017-06-20 18:15:04</p>
+<p class='attribute'><strong>Duration:</strong> 0:02:34.269000</p>
+<p class='attribute'><strong>Status:</strong> Pass 37 Failure 62 Error 2</p>
+
+<p class='description'>mamainst_test_interface</p>
+</div>
+
+
+
+<p id='show_detail_line'>Show
+<a href='javascript:showCase(0)'>Summary</a>
+<a href='javascript:showCase(1)'>Failed</a>
+<a href='javascript:showCase(2)'>All</a>
+</p>
+<table id='result_table'>
+<colgroup>
+<col align='left' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+</colgroup>
+<tr id='header_row'>
+    <td>Test Group/Test case</td>
+    <td>Count</td>
+    <td>Pass</td>
+    <td>Fail</td>
+    <td>Error</td>
+    <td>View</td>
+</tr>
+
+<tr class='errorClass'>
+    <td>test_interface_case.TestInterfaceCase</td>
+    <td>101</td>
+    <td>37</td>
+    <td>62</td>
+    <td>2</td>
+    <td><a href="javascript:showClassDetail('c1',101)">Detail</a></td>
+</tr>
+
+<tr id='ft1.1' class='none'>
+    <td class='failCase'><div class='testcase'>test_user_register</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.1')" >
+        fail</a>
+
+    <div id='div_ft1.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.1: -----------------正确注册------------
+接口地址:/u/api/user/register
+传递参数:{"phone":"18202886910","v":"1.0","platform":"app","code":"1234","deviceId":"123456","name":"红米note4","city":"成都"}
+返回的code不是0199999
+code=0199998
+msg=服务器异常.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 51, in test_user_register
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0199999
+code=0199998
+msg=服务器异常.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.2' class='none'>
+    <td class='failCase'><div class='testcase'>test_user_register_exist_account</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.2')" >
+        fail</a>
+
+    <div id='div_ft1.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.2: -----------------输入已注册过的手机号能否注册------------
+接口地址:/u/api/user/register
+传递参数:{"phone":"18202886910","v":"1.0","platform":"app","code":"1234","deviceId":"123456","name":"红米note4","city":"成都"}
+0101002
+返回的code不是0101002
+code=0199998
+msg=服务器异常.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 94, in test_user_register_exist_account
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0101002
+code=0199998
+msg=服务器异常.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.3' class='none'>
+    <td class='failCase'><div class='testcase'>test_user_register_wrong_code</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.3')" >
+        fail</a>
+
+    <div id='div_ft1.3' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.3: -----------------输入错误的验证码能否注册------------
+接口地址:/u/api/user/register
+传递参数:{"phone":"18202886911","v":"1.0","platform":"app","code":"1111","deviceId":"123456"}
+0102002
+返回的code不是0102002
+code=0199998
+msg=服务器异常.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 136, in test_user_register_wrong_code
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0102002
+code=0199998
+msg=服务器异常.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.4' class='none'>
+    <td class='failCase'><div class='testcase'>test_user_login_code</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.4')" >
+        fail</a>
+
+    <div id='div_ft1.4' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.4').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.4: -----------------验证码登录------------
+接口地址:/u/api/user/login_code
+传递参数:{"phone":"18202886901","v":"1.0","platform":"app","code":"1234","deviceId":"123456","name":"红米note4","city":"成都"}
+返回的code不是0199999
+code=0199998
+msg=服务器异常.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 179, in test_user_login_code
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0199999
+code=0199998
+msg=服务器异常.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.5' class='none'>
+    <td class='failCase'><div class='testcase'>test_user_login_code_noexist_account</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.5')" >
+        fail</a>
+
+    <div id='div_ft1.5' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.5').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.5: -----------------输入未注册的手机号能否登录------------
+接口地址:/u/api/user/login_code
+传递参数:{"phone":"18202886902","v":"1.0","platform":"app","code":"1234","deviceId":"123456","name":"红米note4","city":"成都"}
+返回的code不是0199999
+code=0199998
+msg=服务器异常.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 227, in test_user_login_code_noexist_account
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0199999
+code=0199998
+msg=服务器异常.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.6' class='none'>
+    <td class='failCase'><div class='testcase'>test_user_login_code_wrong_code</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.6')" >
+        fail</a>
+
+    <div id='div_ft1.6' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.6').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.6: -----------------输入错误的验证码能否登录------------
+接口地址:/u/api/user/login_code
+传递参数:{"phone":"18202886901","v":"1.0","platform":"app","code":"1111","deviceId":"123456"}
+返回的code不是0102002
+code=0199998
+msg=服务器异常.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 270, in test_user_login_code_wrong_code
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0102002
+code=0199998
+msg=服务器异常.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.7' class='none'>
+    <td class='failCase'><div class='testcase'>test_user_login_pwd</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.7')" >
+        fail</a>
+
+    <div id='div_ft1.7' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.7').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.7: -----------------密码登录------------
+接口地址:/u/api/user/login_pwd
+传递参数:{"phone":"18202886901","v":"1.0","platform":"app","pwd":"123456","deviceId":"123456","name":"红米note4","city":"成都"}
+返回的code不是0199999
+code=0199998
+msg=服务器异常.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 314, in test_user_login_pwd
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0199999
+code=0199998
+msg=服务器异常.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.8' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_user_login_pwd_noexist_account</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.8')" >
+        pass</a>
+
+    <div id='div_pt1.8' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.8').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.8: -----------------输入未注册的手机号能否登录------------
+接口地址:/u/api/user/login_pwd
+传递参数:{"phone":"18202886903","v":"1.0","platform":"app","pwd":"123456","deviceId":"123456"}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.9' class='none'>
+    <td class='failCase'><div class='testcase'>test_user_login_pwd_wrong_pwd</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.9')" >
+        fail</a>
+
+    <div id='div_ft1.9' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.9').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.9: -----------------输入已注册的手机号和错误的密码能否登录------------
+接口地址:/u/api/user/login_pwd
+传递参数:{"phone":"18202886901","v":"1.0","platform":"app","pwd":"123456","deviceId":"123456"}
+返回的code不是0101001
+code=0199998
+msg=服务器异常.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 406, in test_user_login_pwd_wrong_pwd
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0101001
+code=0199998
+msg=服务器异常.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.10' class='none'>
+    <td class='failCase'><div class='testcase'>test_user_login_other_QQ</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.10')" >
+        fail</a>
+
+    <div id='div_ft1.10' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.10').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.10: -----------------第三方登录QQ------------
+接口地址:/u/api/user/login_other
+传递参数:{"unionId":"fafdasfae","v":"1.0","platform":"app","deviceId":"123456","type":"qq"}
+返回的code不是0199999
+code=0199998
+msg=服务器异常.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 450, in test_user_login_other_QQ
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0199999
+code=0199998
+msg=服务器异常.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.11' class='none'>
+    <td class='failCase'><div class='testcase'>test_user_login_other_wx</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.11')" >
+        fail</a>
+
+    <div id='div_ft1.11' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.11').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.11: -----------------第三方登录wx------------
+接口地址:/u/api/user/login_other
+传递参数:{"unionId":"fdasfeaff","v":"1.0","platform":"app","deviceId":"123456","type":"weixin"}
+返回的code不是0199999
+code=0199998
+msg=服务器异常.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 552, in test_user_login_other_wx
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0199999
+code=0199998
+msg=服务器异常.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.12' class='none'>
+    <td class='failCase'><div class='testcase'>test_user_login_other_QQ_nomust_parameter</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.12')" >
+        fail</a>
+
+    <div id='div_ft1.12' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.12').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.12: -----------------第三方登录QQ传递非必传参数，系统的实现情况------------
+接口地址:/u/api/user/login_other
+传递参数:{"unionId":"fafdasfae","v":"1.0","platform":"app","deviceId":"123456","type":"qq","sex":"male","nickname":"我的超人","name":"红米","city":"成都"}
+返回的code不是0199999
+code=0199998
+msg=服务器异常.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 500, in test_user_login_other_QQ_nomust_parameter
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0199999
+code=0199998
+msg=服务器异常.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.13' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_user_info</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.13')" >
+        pass</a>
+
+    <div id='div_pt1.13' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.13').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.13: -----------------获取用户详情------------
+接口地址:/u/api/user/info
+传递参数:{"token":"90cd6fddcfb04cc2830ae937077e1889","v":"1.0","platform":"app","accountId":"592696b7b90f7763e0c98932"}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.14' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_user_info_different_token_accountId</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.14')" >
+        pass</a>
+
+    <div id='div_pt1.14' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.14').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.14: -----------------获取用户详情token与accountId对应非同一用户------------
+接口地址:/u/api/user/info
+传递参数:{"token":"90cd6fddcfb04cc2830ae937077e1889","v":"1.0","platform":"app","accountId":"592696b7b90f7763e0c98931"}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.15' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_user_info_by_token</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.15')" >
+        pass</a>
+
+    <div id='div_pt1.15' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.15').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.15: -----------------获取用户详情token存在，accountId不存在------------
+接口地址:/u/api/user/info
+传递参数:{"token":"90cd6fddcfb04cc2830ae937077e1889","v":"1.0","platform":"app","accountId":"592696b7b90f7763e0c9893"}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.16' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_user_teacher_list</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.16')" >
+        pass</a>
+
+    <div id='div_pt1.16' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.16').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.16: -----------------获取导师列表------------
+接口地址:/u/api/user/teacher_list
+传递参数:{"platform":"app","v":"1.0","pageNum":2,"pageSize":2}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.17' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_user_teacher_list_by_page</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.17')" >
+        pass</a>
+
+    <div id='div_pt1.17' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.17').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.17: -----------------获取第二页导师列表------------
+接口地址:/u/api/user/teacher_list
+传递参数:{"platform":"app","v":"1.0","pageNum":2,"pageSize":2,"token":"90cd6fddcfb04cc2830ae937077e1889"}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.18' class='none'>
+    <td class='failCase'><div class='testcase'>test_user_teacher_list_no_page</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.18')" >
+        fail</a>
+
+    <div id='div_ft1.18' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.18').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.18: -----------------获取导师列表，不传pageNum和pageSize------------
+接口地址:/u/api/user/teacher_list
+传递参数:{"platform":"app","v":"1.0","token":"90cd6fddcfb04cc2830ae937077e1889"}
+返回的code不是0199996
+code=0199999
+msg=成功.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 872, in test_user_teacher_list_no_page
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0199996
+code=0199999
+msg=成功.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.19' class='none'>
+    <td class='failCase'><div class='testcase'>test_user_info_update_images</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.19')" >
+        fail</a>
+
+    <div id='div_ft1.19' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.19').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.19: -----------------修改用户头像------------
+接口地址:/u/api/user/cover_update
+传递参数:{"token":"90cd6fddcfb04cc2830ae937077e1889","v":"1.0","platform":"app","images":"imagesnumb"}
+无返回头像大图片
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 919, in test_user_info_update_images
+    self.assertIsNotNone(response['data']['imageL'], msg='无返回头像大图片')
+AssertionError: 无返回头像大图片
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.20' class='none'>
+    <td class='failCase'><div class='testcase'>test_user_info_update_nikeName</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.20')" >
+        fail</a>
+
+    <div id='div_ft1.20' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.20').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.20: -----------------修改用户昵称------------
+接口地址:/u/api/user/info_update
+传递参数:{"token":"90cd6fddcfb04cc2830ae937077e1889","v":"1.0","platform":"app","nickName":"测试修改昵称"}
+返回的code不是0199999
+code=0199998
+msg=服务器异常.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 964, in test_user_info_update_nikeName
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0199999
+code=0199998
+msg=服务器异常.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.21' class='none'>
+    <td class='failCase'><div class='testcase'>test_user_info_update_description</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.21')" >
+        fail</a>
+
+    <div id='div_ft1.21' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.21').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.21: -----------------修改用户签名------------
+接口地址:/u/api/user/info_update
+传递参数:{"token":"90cd6fddcfb04cc2830ae937077e1889","v":"1.0","platform":"app","description":"测试修改签名"}
+返回的code不是0199999
+code=0199998
+msg=服务器异常.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 1008, in test_user_info_update_description
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0199999
+code=0199998
+msg=服务器异常.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.22' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_user_info_update_sex</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.22')" >
+        pass</a>
+
+    <div id='div_pt1.22' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.22').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.22: -----------------修改用户性别------------
+接口地址:/u/api/user/info_update
+传递参数:{"token":"90cd6fddcfb04cc2830ae937077e1889","v":"1.0","platform":"app","sex":"female"}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.23' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_user_info_update_all</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.23')" >
+        pass</a>
+
+    <div id='div_pt1.23' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.23').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.23: -----------------同时修改所有用户个人资料------------
+接口地址:/u/api/user/info_update
+传递参数:{"token":"90cd6fddcfb04cc2830ae937077e1889","v":"1.0","platform":"app","sex":"female","nickName":"测试修改昵称","description":"测试修改签名"}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.24' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_user_info_update_wrong_sex</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.24')" >
+        pass</a>
+
+    <div id='div_pt1.24' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.24').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.24: -----------------修改用户性别，传入不符合的数据------------
+接口地址:/u/api/user/info_update
+传递参数:{"token":"90cd6fddcfb04cc2830ae937077e1889","v":"1.0","platform":"app","sex":"12345"}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.25' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_user_pwd_set</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.25')" >
+        pass</a>
+
+    <div id='div_pt1.25' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.25').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.25: -----------------设置密码------------
+接口地址:/u/api/user/pwd_set
+传递参数:{"token":"90cd6fddcfb04cc2830ae937077e1889","v":"1.0","platform":"app","pwd":"123456"}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.26' class='none'>
+    <td class='failCase'><div class='testcase'>test_user_pwd_set_out_sixteen</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.26')" >
+        fail</a>
+
+    <div id='div_ft1.26' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.26').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.26: -----------------设置密码输入超过16位------------
+接口地址:/u/api/user/pwd_set
+传递参数:{"token":"90cd6fddcfb04cc2830ae937077e1889","v":"1.0","platform":"app","pwd":"12345678901234567"}
+返回的code不是0199996
+code=0199999
+msg=成功.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 1228, in test_user_pwd_set_out_sixteen
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0199996
+code=0199999
+msg=成功.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.27' class='none'>
+    <td class='failCase'><div class='testcase'>test_user_pwd_set_in_six</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.27')" >
+        fail</a>
+
+    <div id='div_ft1.27' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.27').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.27: -----------------设置密码输入少于6位------------
+接口地址:/u/api/user/pwd_set
+传递参数:{"token":"90cd6fddcfb04cc2830ae937077e1889","v":"1.0","platform":"app","pwd":"12345"}
+返回的code不是0199996
+code=0199999
+msg=成功.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 1272, in test_user_pwd_set_in_six
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0199996
+code=0199999
+msg=成功.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.28' class='none'>
+    <td class='failCase'><div class='testcase'>test_user_pwd_set_no_token</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.28')" >
+        fail</a>
+
+    <div id='div_ft1.28' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.28').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.28: -----------------设置密码参数缺少token------------
+接口地址:/u/api/user/pwd_set
+传递参数:{"v":"1.0","platform":"app","pwd":"123456"}
+返回的code不是0199997
+code=0199996
+msg=参数有误.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 1316, in test_user_pwd_set_no_token
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0199997
+code=0199996
+msg=参数有误.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.29' class='none'>
+    <td class='failCase'><div class='testcase'>test_user_pwd_out_sixteen_update_code</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.29')" >
+        fail</a>
+
+    <div id='div_ft1.29' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.29').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.29: -----------------验证码修改密码输入超过16位------------
+接口地址:/u/api/user/pwd_update_code
+传递参数:{"token":"90cd6fddcfb04cc2830ae937077e1889","v":"1.0","platform":"app","code":"123456","pwd":"12345678901234567"}
+返回的code不是0199996
+code=0199999
+msg=成功.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 1404, in test_user_pwd_out_sixteen_update_code
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0199996
+code=0199999
+msg=成功.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.30' class='none'>
+    <td class='failCase'><div class='testcase'>test_user_pwd_in_six_update_code</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.30')" >
+        fail</a>
+
+    <div id='div_ft1.30' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.30').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.30: -----------------验证码修改密码输入少于6位------------
+接口地址:/u/api/user/pwd_update_code
+传递参数:{"token":"90cd6fddcfb04cc2830ae937077e1889","v":"1.0","platform":"app","code":"123456","pwd":"12345"}
+返回的code不是0199996
+code=0199999
+msg=成功.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 1448, in test_user_pwd_in_six_update_code
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0199996
+code=0199999
+msg=成功.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.31' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_user_pwd_update_code</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.31')" >
+        pass</a>
+
+    <div id='div_pt1.31' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.31').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.31: -----------------验证码修改密码------------
+接口地址:/u/api/user/pwd_update_code
+传递参数:{"token":"90cd6fddcfb04cc2830ae937077e1889","v":"1.0","platform":"app","code":"123456","pwd":"123456"}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.32' class='none'>
+    <td class='failCase'><div class='testcase'>test_user_pwd_update_code_no_token</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.32')" >
+        fail</a>
+
+    <div id='div_ft1.32' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.32').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.32: -----------------验证码修改密码参数缺少token------------
+接口地址:/u/api/user/pwd_update_code
+传递参数:{"v":"1.0","platform":"app","code":"123456","pwd":"12345"}
+返回的code不是0199997
+code=0199996
+msg=参数有误.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 1492, in test_user_pwd_update_code_no_token
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0199997
+code=0199996
+msg=参数有误.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.33' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_user_pwd_update_by_original_password</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.33')" >
+        pass</a>
+
+    <div id='div_pt1.33' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.33').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.33: -----------------通过原密码修改密码------------
+接口地址:/u/api/user/pwd_update_oldpwd
+传递参数:{"token":"90cd6fddcfb04cc2830ae937077e1890","v":"1.0","platform":"app","oldPwd":"123456","pwd":"123456"}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.34' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_user_pwd_update_by_wrong_original_password</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.34')" >
+        pass</a>
+
+    <div id='div_pt1.34' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.34').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.34: -----------------原密码输入错误------------
+接口地址:/u/api/user/pwd_update_oldpwd
+传递参数:{"token":"90cd6fddcfb04cc2830ae937077e1891","v":"1.0","platform":"app","oldPwd":"12345","pwd":"123456"}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.35' class='none'>
+    <td class='failCase'><div class='testcase'>test_user_pwd_update_by_five_pwd</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.35')" >
+        fail</a>
+
+    <div id='div_ft1.35' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.35').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.35: -----------------新密码为5位字符------------
+接口地址:/u/api/user/pwd_update_oldpwd
+传递参数:{"token":"90cd6fddcfb04cc2830ae937077e1892","v":"1.0","platform":"app","oldPwd":"123456","pwd":"12345678901234567"}
+返回的code不是0199996
+code=0199999
+msg=成功.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 1668, in test_user_pwd_update_by_five_pwd
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0199996
+code=0199999
+msg=成功.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.36' class='none'>
+    <td class='failCase'><div class='testcase'>test_user_pwd_update_by_seventeen_pwd</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.36')" >
+        fail</a>
+
+    <div id='div_ft1.36' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.36').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.36: -----------------新密码为17位字符------------
+接口地址:/u/api/user/pwd_update_oldpwd
+传递参数:{"token":"90cd6fddcfb04cc2830ae937077e1893","v":"1.0","platform":"app","oldPwd":"123456","pwd":"12345"}
+返回的code不是0199996
+code=0199999
+msg=成功.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 1712, in test_user_pwd_update_by_seventeen_pwd
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0199996
+code=0199999
+msg=成功.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.37' class='none'>
+    <td class='failCase'><div class='testcase'>test_user_phone_update_by_tenphone</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.37')" >
+        fail</a>
+
+    <div id='div_ft1.37' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.37').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.37: -----------------第三方登录绑定手机输入10位手机号------------
+接口地址:/u/api/user/phone_update
+传递参数:{"token":"6b33a0dd7b864f7799ec6c3aba2356fb","v":"1.0","platform":"app","code":"123456","phone":"1820288690"}
+返回的code不是0199996
+code=0199999
+msg=成功.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 1844, in test_user_phone_update_by_tenphone
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0199996
+code=0199999
+msg=成功.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.38' class='none'>
+    <td class='failCase'><div class='testcase'>test_user_phone_update_by_twelvephone</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.38')" >
+        fail</a>
+
+    <div id='div_ft1.38' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.38').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.38: -----------------第三方登录绑定手机输入12位手机号------------
+接口地址:/u/api/user/phone_update
+传递参数:{"token":"6b33a0dd7b864f7799ec6c3aba2356fc","v":"1.0","platform":"app","code":"123456","phone":"182028869061"}
+返回的code不是0199996
+code=0199999
+msg=成功.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 1888, in test_user_phone_update_by_twelvephone
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0199996
+code=0199999
+msg=成功.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.39' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_user_phone_update</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.39')" >
+        pass</a>
+
+    <div id='div_pt1.39' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.39').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.39: -----------------第三方登录绑定手机------------
+接口地址:/u/api/user/phone_update
+传递参数:{"token":"6b33a0dd7b864f7799ec6c3aba2356fe","v":"1.0","platform":"app","code":"123456","phone":"18202886998"}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.40' class='none'>
+    <td class='failCase'><div class='testcase'>test_user_phone_update_pass</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.40')" >
+        fail</a>
+
+    <div id='div_ft1.40' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.40').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.40: -----------------第三方登录已绑定手机号能否直接绑定------------
+接口地址:/u/api/user/phone_update
+传递参数:{"token":"6b33a0dd7b864f7799ec6c3aba2356ff","v":"1.0","platform":"app","code":"123456","phone":"18202886997"}
+返回的code不是0199996
+code=0101007
+msg=该手机已经被其他账户所占用，请直接通过该手机登录，然后解除手机绑定 .
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 1800, in test_user_phone_update_pass
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0199996
+code=0101007
+msg=该手机已经被其他账户所占用，请直接通过该手机登录，然后解除手机绑定 .
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.41' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_user_phone_reset</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.41')" >
+        pass</a>
+
+    <div id='div_pt1.41' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.41').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.41: -----------------已绑定手机用户更换手机------------
+接口地址:/u/api/user/phone_reset
+传递参数:{"token":"90cd6fddcfb04cc2830ae937077e1889","v":"1.0","platform":"app","oldCode":"123456","newPhone":"18202886996","newCode":"123456"}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.42' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_user_address_list</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.42')" >
+        pass</a>
+
+    <div id='div_pt1.42' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.42').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.42: -----------------获取收货地址列表------------
+接口地址:/u/api/user/address_list
+传递参数:{"token":"90cd6fddcfb04cc2830ae937077e1889","v":"1.0","platform":"app"}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.43' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_user_address_add</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.43')" >
+        pass</a>
+
+    <div id='div_pt1.43' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.43').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.43: -----------------添加收货地址------------
+接口地址:/u/api/user/address_add
+传递参数:{"token":"90cd6fddcfb04cc2830ae937077e1889","v":"1.0","platform":"app","name":"namenumb","phone":"18202886913","province":"四川","city":"成都","area":"高新区","address":"环球中心","isDefault":"true"}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.44' class='none'>
+    <td class='failCase'><div class='testcase'>test_user_address_add_no_token</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.44')" >
+        fail</a>
+
+    <div id='div_ft1.44' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.44').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.44: -----------------添加收货地址参数中缺少token------------
+接口地址:/u/api/user/address_add
+传递参数:{"v":"1.0","platform":"app","name":"namenumb","phone":"18202886913","province":"四川","city":"成都","area":"高新区","address":"环球中心","isDefault":"true"}
+返回的code不是0199997
+code=0199996
+msg=参数有误.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 2115, in test_user_address_add_no_token
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0199997
+code=0199996
+msg=参数有误.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.45' class='none'>
+    <td class='failCase'><div class='testcase'>test_user_address_add_no_account</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.45')" >
+        fail</a>
+
+    <div id='div_ft1.45' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.45').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.45: -----------------添加收货地址参数无对应的用户------------
+接口地址:/u/api/user/address_add
+传递参数:{"token":"90cd6fddcfb04cc2830ae937077e18","v":"1.0","platform":"app","name":"namenumb","phone":"18202886913","province":"四川","city":"成都","area":"高新区","address":"环球中心","isDefault":"true"}
+返回的code不是0101001
+code=0199995
+msg=帐号在其他地方登录.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 2159, in test_user_address_add_no_account
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0101001
+code=0199995
+msg=帐号在其他地方登录.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.46' class='none'>
+    <td class='failCase'><div class='testcase'>test_user_address_add_out_norm</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.46')" >
+        fail</a>
+
+    <div id='div_ft1.46' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.46').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.46: -----------------添加收货地址参数超过传递上线------------
+接口地址:/u/api/user/address_add
+传递参数:{"token":"90cd6fddcfb04cc2830ae937077e1889","v":"1.0","platform":"app","name":"123456789012345678901","phone":"182028869131","province":"12345678901234567890123456789012345678901","city":"12345678901234567890123456789012345678901","area":"12345678901234567890123456789012345678901","address":"12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901","isDefault":"true"}
+返回的code不是0199996
+code=0199999
+msg=成功.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 2203, in test_user_address_add_out_norm
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0199996
+code=0199999
+msg=成功.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.47' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_user_address_add_no_parameter</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.47')" >
+        pass</a>
+
+    <div id='div_pt1.47' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.47').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.47: -----------------添加收货地址参数为空------------
+接口地址:/u/api/user/address_add
+传递参数:{"token":"90cd6fddcfb04cc2830ae937077e1889","v":"1.0","platform":"app"}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.48' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_user_address_update</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.48')" >
+        pass</a>
+
+    <div id='div_pt1.48' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.48').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.48: -----------------修改收货地址------------
+接口地址:/u/api/user/address_update
+传递参数:{"addressId":"3bc5c9e7bc7b4250b8404c1f505c3e12","token":"90cd6fddcfb04cc2830ae937077e1889","v":"1.0","platform":"app","name":"namenumb","phone":"18202886913","province":"四川","city":"成都","area":"高新区","address":"环球中心","isDefault":"true"}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.49' class='none'>
+    <td class='failCase'><div class='testcase'>test_user_address_update_no_token</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.49')" >
+        fail</a>
+
+    <div id='div_ft1.49' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.49').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.49: -----------------修改收货地址参数中缺少token------------
+接口地址:/u/api/user/address_update
+传递参数:{"addressId":"3bc5c9e7bc7b4250b8404c1f505c3e12","v":"1.0","platform":"app","name":"namenumb","phone":"18202886913","province":"四川","city":"成都","area":"高新区","address":"环球中心","isDefault":"true"}
+返回的code不是0199997
+code=0199996
+msg=参数有误.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 2335, in test_user_address_update_no_token
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0199997
+code=0199996
+msg=参数有误.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.50' class='none'>
+    <td class='failCase'><div class='testcase'>test_user_address_update_no_account</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.50')" >
+        fail</a>
+
+    <div id='div_ft1.50' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.50').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.50: -----------------修改收货地址参数无对应的用户------------
+接口地址:/u/api/user/address_update
+传递参数:{"addressId":"3bc5c9e7bc7b4250b8404c1f505c3e12","token":"90cd6fddcfb04cc2830ae937077e18","v":"1.0","platform":"app","name":"namenumb","phone":"18202886913","province":"四川","city":"成都","area":"高新区","address":"环球中心","isDefault":"true"}
+返回的code不是0101001
+code=0199995
+msg=帐号在其他地方登录.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 2379, in test_user_address_update_no_account
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0101001
+code=0199995
+msg=帐号在其他地方登录.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.51' class='none'>
+    <td class='failCase'><div class='testcase'>test_user_address_update_out_norm</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.51')" >
+        fail</a>
+
+    <div id='div_ft1.51' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.51').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.51: -----------------修改收货地址参数超过传递上线------------
+接口地址:/u/api/user/address_update
+传递参数:{"addressId":"3bc5c9e7bc7b4250b8404c1f505c3e12","token":"90cd6fddcfb04cc2830ae937077e1889","v":"1.0","platform":"app","name":"123456789012345678901","phone":"182028869131","province":"12345678901234567890123456789012345678901","city":"12345678901234567890123456789012345678901","area":"12345678901234567890123456789012345678901","address":"12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901","isDefault":"true"}
+返回的code不是0199996
+code=0199999
+msg=成功.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 2423, in test_user_address_update_out_norm
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0199996
+code=0199999
+msg=成功.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.52' class='none'>
+    <td class='failCase'><div class='testcase'>test_user_address_update_no_parameter</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.52')" >
+        fail</a>
+
+    <div id='div_ft1.52' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.52').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.52: -----------------修改收货地址参数为空------------
+接口地址:/u/api/user/address_update
+传递参数:{"token":"90cd6fddcfb04cc2830ae937077e1889","v":"1.0","platform":"app","addressId":"3bc5c9e7bc7b4250b8404c1f505c3e12"}
+返回的code不是0199996
+code=0199999
+msg=成功.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 2467, in test_user_address_update_no_parameter
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0199996
+code=0199999
+msg=成功.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.53' class='none'>
+    <td class='failCase'><div class='testcase'>test_user_address_update_noexist</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.53')" >
+        fail</a>
+
+    <div id='div_ft1.53' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.53').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.53: -----------------修改不存在的收货地址------------
+接口地址:/u/api/user/address_update
+传递参数:{"addressId":"3bc5c9e7bc7b4250b8404c1f505c3e00","token":"90cd6fddcfb04cc2830ae937077e1889","v":"1.0","platform":"app","name":"namenumb","phone":"18202886913","province":"四川","city":"成都","area":"高新区","address":"环球中心","isDefault":"true"}
+返回的code不是0199994
+code=0199999
+msg=成功.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 2511, in test_user_address_update_noexist
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0199994
+code=0199999
+msg=成功.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.54' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_user_address_del</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.54')" >
+        pass</a>
+
+    <div id='div_pt1.54' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.54').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.54: -----------------删除收货地址------------
+接口地址:/u/api/user/address_del
+传递参数:{"token":"90cd6fddcfb04cc2830ae937077e1889","v":"1.0","platform":"app","addressId":"3bc5c9e7bc7b4250b8404c1f505c3ed2"}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.55' class='none'>
+    <td class='failCase'><div class='testcase'>test_user_address_del_noexist</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.55')" >
+        fail</a>
+
+    <div id='div_ft1.55' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.55').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.55: -----------------删除不存在的收货地址------------
+接口地址:/u/api/user/address_del
+传递参数:{"token":"90cd6fddcfb04cc2830ae937077e1889","v":"1.0","platform":"app","addressId":"3bc5c9e7bc7b4250b8404c1f505c3e01"}
+返回的code不是0199994
+code=0199999
+msg=成功.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 2599, in test_user_address_del_noexist
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0199994
+code=0199999
+msg=成功.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.56' class='none'>
+    <td class='failCase'><div class='testcase'>test_forum_list</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.56')" >
+        fail</a>
+
+    <div id='div_ft1.56' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.56').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.56: -----------------获取讲堂列表------------
+接口地址:/f/api/forum/list
+传递参数:{"platform":"app","cityId":"成都","v":"1.0"}
+返回的code不是0199999
+code=0199998
+msg=服务器异常.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 2643, in test_forum_list
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0199999
+code=0199998
+msg=服务器异常.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.57' class='none'>
+    <td class='failCase'><div class='testcase'>test_forum_list_by_page</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.57')" >
+        fail</a>
+
+    <div id='div_ft1.57' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.57').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.57: -----------------获取讲堂列表分页显示------------
+接口地址:/f/api/forum/list
+传递参数:{"platform":"app","cityId":"成都","v":"1.0","pageNum":2,"pageSize":2}
+返回的code不是0199999
+code=0199998
+msg=服务器异常.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 2693, in test_forum_list_by_page
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0199999
+code=0199998
+msg=服务器异常.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.58' class='none'>
+    <td class='failCase'><div class='testcase'>test_forum_list_by_token</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.58')" >
+        fail</a>
+
+    <div id='div_ft1.58' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.58').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.58: -----------------获取讲堂列表传入token------------
+接口地址:/f/api/forum/list
+传递参数:{"platform":"app","cityId":"成都","v":"1.0","token":"90cd6fddcfb04cc2830ae937077e1889"}
+返回的code不是0199999
+code=0199998
+msg=服务器异常.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 2743, in test_forum_list_by_token
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0199999
+code=0199998
+msg=服务器异常.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.59' class='none'>
+    <td class='failCase'><div class='testcase'>test_forum_detail_by_token</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.59')" >
+        fail</a>
+
+    <div id='div_ft1.59' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.59').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.59: -----------------获取讲堂基本详情传入token------------
+接口地址:/f/api/forum/detail
+传递参数:{"platform":"app","v":"1.0","forumId":"59350c33929e33d040d8fc22","token":"90cd6fddcfb04cc2830ae937077e1889"}
+返回的code不是0199999
+code=0199998
+msg=服务器异常.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 2844, in test_forum_detail_by_token
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0199999
+code=0199998
+msg=服务器异常.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.60' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_forum_detail_noexist_forumId</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.60')" >
+        pass</a>
+
+    <div id='div_pt1.60' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.60').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.60: -----------------获取讲堂基本详情传入不存在的讲堂id------------
+接口地址:/f/api/forum/detail
+传递参数:{"platform":"app","v":"1.0","forumId":"59350c33929e33d040d8fc00"}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.61' class='none'>
+    <td class='failCase'><div class='testcase'>test_course_list_by_forum</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.61')" >
+        fail</a>
+
+    <div id='div_ft1.61' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.61').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.61: -----------------获取讲堂课程列表------------
+接口地址:/c/api/course/list_by_forum
+传递参数:{"cityId":"成都","v":"1.0","forumId":"59350c33929e33d040d8fc22"}
+返回的code不是0199999
+code=0199998
+msg=服务器异常.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 2938, in test_course_list_by_forum
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0199999
+code=0199998
+msg=服务器异常.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.62' class='none'>
+    <td class='failCase'><div class='testcase'>test_course_list_by_forum_by_page</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.62')" >
+        fail</a>
+
+    <div id='div_ft1.62' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.62').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.62: -----------------获取讲堂课程列表分页显示------------
+接口地址:/c/api/course/list_by_forum
+传递参数:{"cityId":"成都","v":"1.0","forumId":"59350c33929e33d040d8fc22","pageNum":2,"pageSize":2}
+返回的code不是0199999
+code=0199998
+msg=服务器异常.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 2983, in test_course_list_by_forum_by_page
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0199999
+code=0199998
+msg=服务器异常.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.63' class='none'>
+    <td class='failCase'><div class='testcase'>test_course_list_by_forum_noexist_forumId</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.63')" >
+        fail</a>
+
+    <div id='div_ft1.63' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.63').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.63: -----------------获取讲堂课程列表传入不存在的讲堂id------------
+接口地址:/c/api/course/list_by_forum
+传递参数:{"cityId":"成都","v":"1.0","forumId":"59350c33929e33d040d8fc00","pageNum":2,"pageSize":2}
+返回的code不是0199994
+code=0199998
+msg=服务器异常.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 3027, in test_course_list_by_forum_noexist_forumId
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0199994
+code=0199998
+msg=服务器异常.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.64' class='none'>
+    <td class='failCase'><div class='testcase'>test_course_list_by_teacher</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.64')" >
+        fail</a>
+
+    <div id='div_ft1.64' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.64').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.64: -----------------获取导师课程列表------------
+接口地址:/c/api/course/list_by_teacher
+传递参数:{"cityId":"成都","v":"1.0","teacherId":"59103c8847ce46066c301dcd"}
+返回的code不是0199999
+code=0199998
+msg=服务器异常.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 3071, in test_course_list_by_teacher
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0199999
+code=0199998
+msg=服务器异常.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.65' class='none'>
+    <td class='failCase'><div class='testcase'>test_course_list_by_teacher_by_page</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.65')" >
+        fail</a>
+
+    <div id='div_ft1.65' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.65').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.65: -----------------获取导师课程列表分页显示------------
+接口地址:/c/api/course/list_by_teacher
+传递参数:{"cityId":"成都","v":"1.0","teacherId":"59103c8847ce46066c301dcd","pageNum":2,"pageSize":2}
+返回的code不是0199999
+code=0199998
+msg=服务器异常.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 3115, in test_course_list_by_teacher_by_page
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0199999
+code=0199998
+msg=服务器异常.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.66' class='none'>
+    <td class='failCase'><div class='testcase'>test_course_list_by_teacher_noexist_teacherId</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.66')" >
+        fail</a>
+
+    <div id='div_ft1.66' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.66').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.66: -----------------获取导师课程列表出入不存在的导师id------------
+接口地址:/c/api/course/list_by_teacher
+传递参数:{"cityId":"成都","v":"1.0","teacherId":"59103c8847ce46066c301d00"}
+返回的code不是0199994
+code=0199998
+msg=服务器异常.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 3159, in test_course_list_by_teacher_noexist_teacherId
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0199994
+code=0199998
+msg=服务器异常.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.67' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_course_list_by_watch</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.67')" >
+        pass</a>
+
+    <div id='div_pt1.67' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.67').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.67: -----------------获取我的课程列表------------
+接口地址:/c/api/course/list_by_watch
+传递参数:{"token":"90cd6fddcfb04cc2830ae937077e1889","v":"1.0","platform":"app"}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.68' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_course_list_by_watch_by_page</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.68')" >
+        pass</a>
+
+    <div id='div_pt1.68' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.68').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.68: -----------------获取我的课程列表分页显示------------
+接口地址:/c/api/course/list_by_watch
+传递参数:{"token":"90cd6fddcfb04cc2830ae937077e1889","v":"1.0","platform":"app","pageNum":2,"pageSize":2}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.69' class='none'>
+    <td class='failCase'><div class='testcase'>test_course_list_by_watch_noexist_token</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.69')" >
+        fail</a>
+
+    <div id='div_ft1.69' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.69').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.69: -----------------获取我的课程列表传入不存在的token------------
+接口地址:/c/api/course/list_by_watch
+传递参数:{"token":"90cd6fddcfb04cc2830ae937077e1801","v":"1.0","platform":"app"}
+返回的code不是0101001
+code=0199995
+msg=帐号在其他地方登录.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 3292, in test_course_list_by_watch_noexist_token
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0101001
+code=0199995
+msg=帐号在其他地方登录.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.70' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_course_detail</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.70')" >
+        pass</a>
+
+    <div id='div_pt1.70' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.70').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.70: -----------------获取课程详情------------
+接口地址:/c/api/course/detail
+传递参数:{"courseId":"59350c33929e33d040d8fc24","v":"1.0","platform":"app"}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.71' class='none'>
+    <td class='failCase'><div class='testcase'>test_course_detail_by_token</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.71')" >
+        fail</a>
+
+    <div id='div_ft1.71' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.71').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.71: -----------------获取课程详情传入token------------
+接口地址:/c/api/course/detail
+传递参数:{"courseId":"59350c33929e33d040d8fc24","v":"1.0","platform":"app","token":"90cd6fddcfb04cc2830ae937077e1889"}
+返回的code不是0199999
+code=0102001
+msg=外部调用接口失败.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 3381, in test_course_detail_by_token
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0199999
+code=0102001
+msg=外部调用接口失败.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.72' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_course_detail_by_noexist_courseId</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.72')" >
+        pass</a>
+
+    <div id='div_pt1.72' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.72').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.72: -----------------获取课程详情传入不存在的课程------------
+接口地址:/c/api/course/detail
+传递参数:{"courseId":"591197b347ce46ba442bf700","v":"1.0","platform":"app","token":"90cd6fddcfb04cc2830ae937077e1889"}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.73' class='none'>
+    <td class='failCase'><div class='testcase'>test_course_syllabus</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.73')" >
+        fail</a>
+
+    <div id='div_ft1.73' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.73').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.73: -----------------获取课程大纲------------
+接口地址:/c/api/course/syllabus
+传递参数:{"courseId":"591197b347ce46ba442bf7e6","v":"1.0"}
+返回的code不是0199999
+code=0199994
+msg=资源不存在或已删除.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 3469, in test_course_syllabus
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0199999
+code=0199994
+msg=资源不存在或已删除.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.74' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_course_syllabus_noexist_courseId</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.74')" >
+        pass</a>
+
+    <div id='div_pt1.74' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.74').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.74: -----------------获取课程大纲传入不存在的课程------------
+接口地址:/c/api/course/syllabus
+传递参数:{"courseId":"591197b347ce46ba442bf700","v":"1.0"}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.75' class='none'>
+    <td class='errorCase'><div class='testcase'>test_item_live_detail</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.75')" >
+        error</a>
+
+    <div id='div_ft1.75' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.75').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.75: -----------------获取直播详情------------
+接口地址:/c/api/item/live_detail
+传递参数:{"liveId":"59313bcbb31bbd3984cd8d72","v":"1.0","platform":"app","courseId":"59350c33929e33d040d8fc24"}
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 3560, in test_item_live_detail
+    self.assertEqual(response['data']['liveId'].encode('utf-8'), '59313bcbb31bbd3984cd8d72',msg='返回的直播ID错误\n返回的直播ID:%s' %response['data']['liveId'].encode('utf-8'))
+KeyError: 'liveId'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.76' class='none'>
+    <td class='errorCase'><div class='testcase'>test_item_live_detail_by_token</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.76')" >
+        error</a>
+
+    <div id='div_ft1.76' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.76').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.76: -----------------获取直播详情传入token------------
+接口地址:/c/api/item/live_detail
+传递参数:{"liveId":"59313bcbb31bbd3984cd8d72","v":"1.0","platform":"app","courseId":"59350c33929e33d040d8fc24","token":"90cd6fddcfb04cc2830ae937077e1889"}
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 3606, in test_item_live_detail_by_token
+    self.assertEqual(response['data']['liveId'].encode('utf-8'), '59313bcbb31bbd3984cd8d72',msg='返回的直播ID错误\n返回的直播ID:%s' %response['data']['liveId'].encode('utf-8'))
+KeyError: 'liveId'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.77' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_item_live_detail_no_courseId</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.77')" >
+        pass</a>
+
+    <div id='div_pt1.77' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.77').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.77: -----------------获取直播详情参数缺少courseId------------
+接口地址:/c/api/item/live_detail
+传递参数:{"liveId":"59313bcbb31bbd3984cd8d72","v":"1.0","platform":"app"}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.78' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_item_live_detail_noexist_courseId</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.78')" >
+        pass</a>
+
+    <div id='div_pt1.78' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.78').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.78: -----------------获取直播详情传入不存在的courseId------------
+接口地址:/c/api/item/live_detail
+传递参数:{"liveId":"59313bcbb31bbd3984cd8d72","v":"1.0","platform":"app","courseId":"59350c33929e33d040d8fc20"}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.79' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_item_live_detail_noexist_liveId</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.79')" >
+        pass</a>
+
+    <div id='div_pt1.79' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.79').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.79: -----------------获取直播详情传入不存在的liveId------------
+接口地址:/c/api/item/live_detail
+传递参数:{"liveId":"59313bcbb31bbd3984cd8d71","v":"1.0","platform":"app","courseId":"59350c33929e33d040d8fc24"}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.80' class='none'>
+    <td class='failCase'><div class='testcase'>test_item_vod_detail_video</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.80')" >
+        fail</a>
+
+    <div id='div_ft1.80' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.80').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.80: -----------------获取录播课时视频详情------------
+接口地址:/c/api/item/vod_detail
+传递参数:{"itemId":"5934d229929e33cdd4162f83","v":"1.0","platform":"app","type":"video","courseId":"59350c33929e33d040d8fc24"}
+返回的code不是0199999
+code=0199994
+msg=资源不存在或已删除.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 3778, in test_item_vod_detail_video
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0199999
+code=0199994
+msg=资源不存在或已删除.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.81' class='none'>
+    <td class='failCase'><div class='testcase'>test_item_vod_detail_text</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.81')" >
+        fail</a>
+
+    <div id='div_ft1.81' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.81').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.81: -----------------获取录播课时文本详情------------
+接口地址:/c/api/item/vod_detail
+传递参数:{"itemId":"5934d229929e33cdd4162f83","v":"1.0","platform":"app","type":"text","courseId":"59350c33929e33d040d8fc24"}
+返回的code不是0199999
+code=0199994
+msg=资源不存在或已删除.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 3870, in test_item_vod_detail_text
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0199999
+code=0199994
+msg=资源不存在或已删除.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.82' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_common_new</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.82')" >
+        pass</a>
+
+    <div id='div_pt1.82' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.82').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.82: -----------------查询最新版本号------------
+接口地址:/common/api/version/new
+传递参数:{"v":"1.0","platform":"app"}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.83' class='none'>
+    <td class='failCase'><div class='testcase'>test_ondemand_add_video</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.83')" >
+        fail</a>
+
+    <div id='div_ft1.83' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.83').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.83: -----------------点播视频播放次数增加------------
+接口地址:/p/api/ondemand/add
+传递参数:{"token":"90cd6fddcfb04cc2830ae937077e1889","v":"1.0","platform":"app","courseId":"59350c33929e33d040d8fc24","itemId":"5934d229929e33cdd4162f83","type":"video","lastTime":123456789}
+返回的code不是0199999
+code=0199998
+msg=服务器异常.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 3962, in test_ondemand_add_video
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0199999
+code=0199998
+msg=服务器异常.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.84' class='none'>
+    <td class='failCase'><div class='testcase'>test_ondemand_add_sound</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.84')" >
+        fail</a>
+
+    <div id='div_ft1.84' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.84').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.84: -----------------点播音频播放次数增加------------
+接口地址:/p/api/ondemand/add
+传递参数:{"token":"90cd6fddcfb04cc2830ae937077e1889","v":"1.0","platform":"app","courseId":"59350c33929e33d040d8fc24","itemId":"5934d229929e33cdd4162f83","type":"sound"}
+返回的code不是0199999
+code=0199996
+msg=参数有误.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 4009, in test_ondemand_add_sound
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0199999
+code=0199996
+msg=参数有误.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.85' class='none'>
+    <td class='failCase'><div class='testcase'>test_ondemand_add_text</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.85')" >
+        fail</a>
+
+    <div id='div_ft1.85' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.85').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.85: -----------------点播文本播放次数增加------------
+接口地址:/p/api/ondemand/add
+传递参数:{"token":"90cd6fddcfb04cc2830ae937077e1889","v":"1.0","platform":"app","courseId":"59350c33929e33d040d8fc24","itemId":"5934d229929e33cdd4162f83","type":"text","position":"45,85"}
+返回的code不是0199999
+code=0199998
+msg=服务器异常.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 4056, in test_ondemand_add_text
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0199999
+code=0199998
+msg=服务器异常.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.86' class='none'>
+    <td class='failCase'><div class='testcase'>test_live_add</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.86')" >
+        fail</a>
+
+    <div id='div_ft1.86' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.86').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.86: -----------------直播观看记录增加------------
+接口地址:/p/api/live/add
+传递参数:{"token":"90cd6fddcfb04cc2830ae937077e1889","v":"1.0","platform":"app","courseId":"59350c33929e33d040d8fc24","liveId":"59313bcbb31bbd3984cd8d72","type":"enter"}
+返回的code不是0199999
+code=0199998
+msg=服务器异常.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 4103, in test_live_add
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0199999
+code=0199998
+msg=服务器异常.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.87' class='none'>
+    <td class='failCase'><div class='testcase'>test_live_del</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.87')" >
+        fail</a>
+
+    <div id='div_ft1.87' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.87').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.87: -----------------直播观看记录减少------------
+接口地址:/p/api/live/add
+传递参数:{"token":"90cd6fddcfb04cc2830ae937077e1889","v":"1.0","platform":"app","courseId":"59350c33929e33d040d8fc24","liveId":"59313bcbb31bbd3984cd8d72","type":"quit"}
+返回的code不是0199999
+code=0199998
+msg=服务器异常.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 4150, in test_live_del
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0199999
+code=0199998
+msg=服务器异常.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.88' class='none'>
+    <td class='failCase'><div class='testcase'>test_play_recode_detail_video</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.88')" >
+        fail</a>
+
+    <div id='div_ft1.88' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.88').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.88: -----------------获取视频播放记录------------
+接口地址:/p/api/play_recode/detail
+传递参数:{"token":"90cd6fddcfb04cc2830ae937077e1889","v":"1.0","platform":"app","courseId":"59350c33929e33d040d8fc24","itemId":"5934d229929e33cdd4162f83","type":"video"}
+返回的code不是0199999
+code=0199998
+msg=服务器异常.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 4197, in test_play_recode_detail_video
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0199999
+code=0199998
+msg=服务器异常.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.89' class='none'>
+    <td class='failCase'><div class='testcase'>test_play_recode_detail_sound</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.89')" >
+        fail</a>
+
+    <div id='div_ft1.89' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.89').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.89: -----------------获取音频播放记录------------
+接口地址:/p/api/play_recode/detail
+传递参数:{"token":"90cd6fddcfb04cc2830ae937077e1889","v":"1.0","platform":"app","courseId":"59350c33929e33d040d8fc24","itemId":"5934d229929e33cdd4162f83","type":"sound"}
+返回的code不是0199999
+code=0199998
+msg=服务器异常.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 4244, in test_play_recode_detail_sound
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0199999
+code=0199998
+msg=服务器异常.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.90' class='none'>
+    <td class='failCase'><div class='testcase'>test_play_recode_detail_text</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.90')" >
+        fail</a>
+
+    <div id='div_ft1.90' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.90').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.90: -----------------获取文本播放记录------------
+接口地址:/p/api/play_recode/detail
+传递参数:{"token":"90cd6fddcfb04cc2830ae937077e1889","v":"1.0","platform":"app","courseId":"59350c33929e33d040d8fc24","itemId":"5934d229929e33cdd4162f83","type":"text"}
+返回的code不是0199999
+code=0199998
+msg=服务器异常.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 4291, in test_play_recode_detail_text
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0199999
+code=0199998
+msg=服务器异常.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.91' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_qrcode_detail</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.91')" >
+        pass</a>
+
+    <div id='div_pt1.91' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.91').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.91: -----------------用户查看二维码------------
+接口地址:/q/api/qrcode/detail
+传递参数:{"token":"90cd6fddcfb04cc2830ae937077e1889","v":"1.0","platform":"app","id":"idnumb"}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.92' class='none'>
+    <td class='failCase'><div class='testcase'>test_system_message_list</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.92')" >
+        fail</a>
+
+    <div id='div_ft1.92' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.92').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.92: -----------------获取系统消息列表------------
+接口地址:/msg/api/system_message/list
+传递参数:{"token":"90cd6fddcfb04cc2830ae937077e1889","v":"1.0","platform":"app"}
+返回的code不是0199999
+code=0199998
+msg=服务器异常.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 4385, in test_system_message_list
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0199999
+code=0199998
+msg=服务器异常.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.93' class='none'>
+    <td class='failCase'><div class='testcase'>test_system_message_list_by_page</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.93')" >
+        fail</a>
+
+    <div id='div_ft1.93' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.93').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.93: -----------------获取系统消息列表分页显示------------
+接口地址:/msg/api/system_message/list
+传递参数:{"token":"90cd6fddcfb04cc2830ae937077e1889","v":"1.0","platform":"app","pageNum":2,"pageSize":2}
+返回的code不是0199999
+code=0199998
+msg=服务器异常.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 4432, in test_system_message_list_by_page
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0199999
+code=0199998
+msg=服务器异常.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.94' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_system_message_detail</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.94')" >
+        pass</a>
+
+    <div id='div_pt1.94' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.94').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.94: -----------------获取系统消息详情------------
+接口地址:/msg/api/system_message/detail
+传递参数:{"token":"90cd6fddcfb04cc2830ae937077e1889","v":"1.0","platform":"app","msgId":"msgnumb"}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.95' class='none'>
+    <td class='failCase'><div class='testcase'>test_system_message_unread_exist</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.95')" >
+        fail</a>
+
+    <div id='div_ft1.95' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.95').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.95: -----------------判断是否有未读消息------------
+接口地址:/msg/api/system_message/unread_exist
+传递参数:{"token":"90cd6fddcfb04cc2830ae937077e1889","v":"1.0","platform":"app"}
+返回的code不是0199999
+code=0199998
+msg=服务器异常.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 4526, in test_system_message_unread_exist
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0199999
+code=0199998
+msg=服务器异常.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.96' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_system_message_del</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.96')" >
+        pass</a>
+
+    <div id='div_pt1.96' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.96').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.96: -----------------删除系统消息------------
+接口地址:/msg/api/system_message/del
+传递参数:{"token":"90cd6fddcfb04cc2830ae937077e1889","v":"1.0","platform":"app","msgId":"msgnumb"}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.97' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_region_list</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.97')" >
+        pass</a>
+
+    <div id='div_pt1.97' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.97').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.97: -----------------地域列表------------
+接口地址:/common/api/region/list
+传递参数:{"v":"1.0"}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.98' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_region_hot_list</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.98')" >
+        pass</a>
+
+    <div id='div_pt1.98' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.98').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.98: -----------------获取热门地域列表------------
+接口地址:/common/api/region/hot_list
+传递参数:{"v":"1.0"}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.99' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_templet_list</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.99')" >
+        pass</a>
+
+    <div id='div_pt1.99' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.99').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.99: -----------------获取内置静态页面------------
+接口地址:/static/api/page/list
+传递参数:{"v":"1.0"}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.100' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_ad_list</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.100')" >
+        pass</a>
+
+    <div id='div_pt1.100' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.100').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.100: -----------------广告列表------------
+接口地址:/ad/api/ad/list
+传递参数:{"platform":"app","v":"1.0","pageValue":"001","positionValue":"001"}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.101' class='none'>
+    <td class='failCase'><div class='testcase'>test_ad_details</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.101')" >
+        fail</a>
+
+    <div id='div_ft1.101' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.101').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.101: -----------------广告详情------------
+接口地址:/ad/api/ad/details
+传递参数:{"v":"1.0","adId":"59281157b90f7776307e8fe4"}
+返回的code不是0199999
+code=0199996
+msg=参数有误.
+Traceback (most recent call last):
+  File "E:\project\test_interface\case\test_interface_case.py", line 4812, in test_ad_details
+    self.assertEqual(response['code'], self.code, msg='返回的code不是%s\ncode=%s\nmsg=%s' %(self.code,response['code'].encode('utf-8'),response['msg'].encode('utf-8')))
+AssertionError: 返回的code不是0199999
+code=0199996
+msg=参数有误.
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='total_row'>
+    <td>Total</td>
+    <td>101</td>
+    <td>37</td>
+    <td>62</td>
+    <td>2</td>
+    <td>&nbsp;</td>
+</tr>
+</table>
+
+<div id='ending'>&nbsp;</div>
+
+</body>
+</html>
